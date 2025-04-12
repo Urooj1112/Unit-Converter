@@ -26,7 +26,8 @@ def convert_length(value, from_unit, to_unit):
     return meters / units_in_meters[to_unit]
 
 # Streamlit settings
-st.set_page_config(page_title="Unit Converter", page_icon="U.S", layout="centered")
+st.set_page_config(page_title="Unit Converter", page_icon="🔁", layout="centered")
+
 # --- Branding ---
 st.markdown("""
     <h1 style='text-align: center; background: linear-gradient(to right, #2c3e50, #3498db); 
@@ -35,18 +36,17 @@ st.markdown("""
 
 st.markdown("""
     <div style="text-align: center; font-size: 16px; color: black;">
-        Effortlessly switch between modern and classic length units — instant, intuitive, and crafted for precision!!!!
+        Effortlessly switch between modern and classic length units — instant, intuitive, and crafted for precision!
     </div>
-""", unsafe_allow_html=True) 
+""", unsafe_allow_html=True)
 
 # --- Input Section ---
-
 with st.form("converter_form"):
     value = st.number_input("Enter a value", min_value=0.0, format="%.6f")
     from_unit = st.selectbox("From unit", list(units_in_meters.keys()))
     to_unit = st.selectbox("To unit", list(units_in_meters.keys()))
     submit = st.form_submit_button("Convert Now")
-   
+
 # --- Conversion Result ---
 if submit:
     if from_unit == to_unit:
@@ -73,6 +73,7 @@ if st.session_state.history:
     fig, ax = plt.subplots()
     ax.plot(df["Result"], marker='o', color='#FF6363')
     ax.set_title("Result Trend")
+    ax.set_xlabel("Conversions")
     ax.set_ylabel("Converted Value")
     st.pyplot(fig)
 
@@ -81,5 +82,4 @@ st.markdown("""
     <div style="text-align: center; font-size: 14px; color: gray;">
         Designed by Urooj Saeed | A Creative Journey in Every Click
     </div>
-""", unsafe_allow_html=True) 
-
+""", unsafe_allow_html=True)
